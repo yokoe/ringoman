@@ -13,6 +13,36 @@
 
 @implementation AppController
 
+- (NSString*)fetchVersionOfAppledocWithBinaryPath:(NSString*)binaryPath {
+    
+    // http://stackoverflow.com/questions/412562/execute-a-terminal-command-from-a-cocoa-app
+    
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:binaryPath];
+    [task setArguments: [NSArray arrayWithObject:@"--version"]];
+    
+    NSPipe *pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    
+    NSFileHandle *file = [pipe fileHandleForReading];
+    
+    [task launch];
+    
+    NSData *data = [file readDataToEndOfFile];
+    
+    NSString *string = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] autorelease];
+    [task release];
+    
+    NSString* firstLine = [[string componentsSeparatedByString:@"\n"] objectAtIndex:0];
+    NSArray* nameAndVersion = [firstLine componentsSeparatedByString:@":"];
+    if ([firstLine hasPrefix:@"appledoc"] && [nameAndVersion count] >= 2) {
+        NSString* version = [nameAndVersion objectAtIndex:1];
+        return [version stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    } else {
+        return nil;
+    }
+}
+
 #pragma mark Initial setup
 
 - (void)initialSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -26,6 +56,10 @@
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
     [openPanel setAllowedFileTypes:[NSArray arrayWithObject:@""]];
     [openPanel beginSheetModalForWindow:initialSetupWindow completionHandler:^(NSInteger result) {
+        
+        // Checks if the binary is valid.
+        NSString* version = [self fetchVersionOfAppledocWithBinaryPath:[openPanel filename]];
+        NSLog(@"version = %@", version);
         [initialSetupWindow.pathLabel setStringValue:[openPanel filename]];
     }];
 }
