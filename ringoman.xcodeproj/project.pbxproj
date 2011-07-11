@@ -13,6 +13,7 @@
 		195DC60513CB499D0073A85A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 195DC60313CB499D0073A85A /* Credits.rtf */; };
 		195DC60813CB499D0073A85A /* ringomanAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC60713CB499D0073A85A /* ringomanAppDelegate.m */; };
 		195DC60B13CB499D0073A85A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195DC60913CB499D0073A85A /* MainMenu.xib */; };
+		195DC61313CB4B650073A85A /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC61213CB4B650073A85A /* AppController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		195DC60613CB499D0073A85A /* ringomanAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ringomanAppDelegate.h; sourceTree = "<group>"; };
 		195DC60713CB499D0073A85A /* ringomanAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ringomanAppDelegate.m; sourceTree = "<group>"; };
 		195DC60A13CB499D0073A85A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		195DC61113CB4B650073A85A /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		195DC61213CB4B650073A85A /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				195DC60713CB499D0073A85A /* ringomanAppDelegate.m */,
 				195DC60913CB499D0073A85A /* MainMenu.xib */,
 				195DC5FB13CB499D0073A85A /* Supporting Files */,
+				195DC61113CB4B650073A85A /* AppController.h */,
+				195DC61213CB4B650073A85A /* AppController.m */,
 			);
 			path = ringoman;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			files = (
 				195DC60213CB499D0073A85A /* main.m in Sources */,
 				195DC60813CB499D0073A85A /* ringomanAppDelegate.m in Sources */,
+				195DC61313CB4B650073A85A /* AppController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
