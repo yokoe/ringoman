@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class RMInitialSetupWindow;
 
 @interface AppController : NSObject<NSWindowDelegate> {
 @private
-    
+    IBOutlet NSWindow *mainWindow;
+    IBOutlet RMInitialSetupWindow *initialSetupWindow;
 }
 
 @end
