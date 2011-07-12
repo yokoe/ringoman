@@ -8,9 +8,9 @@
 
 #import "AppController.h"
 
+#import "RMGenerator.h"
 #import "RMInitialSetupWindow.h"
 #import "RMProject.h"
-
 
 static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
 
@@ -131,6 +131,19 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
     [sourceFilesTable reloadData];
 }
 
+#pragma mark Generate
+
+- (IBAction)selectOutputDirectory:(id)sender {
+    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanCreateDirectories:YES];
+    [openPanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            [RMGenerator generateWithProject:currentProject outputDirectory:[openPanel filename]];
+        }
+    }];
+}
 
 #pragma mark Window delegate
 

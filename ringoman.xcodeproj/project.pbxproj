@@ -16,6 +16,7 @@
 		195DC61313CB4B650073A85A /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC61213CB4B650073A85A /* AppController.m */; };
 		195DC61613CB4CEE0073A85A /* RMInitialSetupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC61513CB4CEE0073A85A /* RMInitialSetupWindow.m */; };
 		19895BA713CC977600834DB4 /* RMProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 19895BA613CC977600834DB4 /* RMProject.m */; };
+		19895BAB13CC9FE800834DB4 /* RMGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19895BAA13CC9FE800834DB4 /* RMGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		195DC61513CB4CEE0073A85A /* RMInitialSetupWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMInitialSetupWindow.m; sourceTree = "<group>"; };
 		19895BA513CC977600834DB4 /* RMProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMProject.h; sourceTree = "<group>"; };
 		19895BA613CC977600834DB4 /* RMProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMProject.m; sourceTree = "<group>"; };
+		19895BA913CC9FE800834DB4 /* RMGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGenerator.h; sourceTree = "<group>"; };
+		19895BAA13CC9FE800834DB4 /* RMGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				195DC61513CB4CEE0073A85A /* RMInitialSetupWindow.m */,
 				19895BA513CC977600834DB4 /* RMProject.h */,
 				19895BA613CC977600834DB4 /* RMProject.m */,
+				19895BA913CC9FE800834DB4 /* RMGenerator.h */,
+				19895BAA13CC9FE800834DB4 /* RMGenerator.m */,
 			);
 			path = ringoman;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				195DC61313CB4B650073A85A /* AppController.m in Sources */,
 				195DC61613CB4CEE0073A85A /* RMInitialSetupWindow.m in Sources */,
 				19895BA713CC977600834DB4 /* RMProject.m in Sources */,
+				19895BAB13CC9FE800834DB4 /* RMGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
