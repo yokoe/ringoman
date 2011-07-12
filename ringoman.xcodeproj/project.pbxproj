@@ -15,6 +15,7 @@
 		195DC60B13CB499D0073A85A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195DC60913CB499D0073A85A /* MainMenu.xib */; };
 		195DC61313CB4B650073A85A /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC61213CB4B650073A85A /* AppController.m */; };
 		195DC61613CB4CEE0073A85A /* RMInitialSetupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC61513CB4CEE0073A85A /* RMInitialSetupWindow.m */; };
+		19895BA713CC977600834DB4 /* RMProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 19895BA613CC977600834DB4 /* RMProject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		195DC61213CB4B650073A85A /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		195DC61413CB4CEE0073A85A /* RMInitialSetupWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMInitialSetupWindow.h; sourceTree = "<group>"; };
 		195DC61513CB4CEE0073A85A /* RMInitialSetupWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMInitialSetupWindow.m; sourceTree = "<group>"; };
+		19895BA513CC977600834DB4 /* RMProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMProject.h; sourceTree = "<group>"; };
+		19895BA613CC977600834DB4 /* RMProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMProject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 				195DC61213CB4B650073A85A /* AppController.m */,
 				195DC61413CB4CEE0073A85A /* RMInitialSetupWindow.h */,
 				195DC61513CB4CEE0073A85A /* RMInitialSetupWindow.m */,
+				19895BA513CC977600834DB4 /* RMProject.h */,
+				19895BA613CC977600834DB4 /* RMProject.m */,
 			);
 			path = ringoman;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				195DC60813CB499D0073A85A /* ringomanAppDelegate.m in Sources */,
 				195DC61313CB4B650073A85A /* AppController.m in Sources */,
 				195DC61613CB4CEE0073A85A /* RMInitialSetupWindow.m in Sources */,
+				19895BA713CC977600834DB4 /* RMProject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +296,7 @@
 				195DC61013CB499D0073A85A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

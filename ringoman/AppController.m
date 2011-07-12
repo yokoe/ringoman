@@ -9,6 +9,7 @@
 #import "AppController.h"
 
 #import "RMInitialSetupWindow.h"
+#import "RMProject.h"
 
 
 static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
@@ -86,6 +87,50 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
         }
     }];
 }
+
+#pragma mark Source file list
+
+- (void)addSourceFilesRecursively:(NSArray*)filenames {
+    for (NSString* filename in filenames) {
+        BOOL isDirectory = NO;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filename isDirectory:&isDirectory]) {
+            if (isDirectory) {
+                NSError* error = nil;
+                NSArray* filesInDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:filename error:&error];
+                if (filesInDirectory && error == nil) {
+                    NSMutableArray* fullFilenamesInDirectory = [NSMutableArray array];
+                    for (NSString* fileInDirectory in filesInDirectory) {
+                        [fullFilenamesInDirectory addObject:[filename stringByAppendingPathComponent:fileInDirectory]];
+                    }
+                    [self addSourceFilesRecursively:fullFilenamesInDirectory];
+                } else {
+                    NSLog(@"Error at adding source files. %@", error);
+                }
+            } else {
+                [currentProject addSourceFile:filename];
+            }
+        }
+    }
+    [sourceFilesTable reloadData];
+}
+
+- (IBAction)addSourceFiles:(id)sender {
+    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setAllowsMultipleSelection:YES];
+    [openPanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            [self addSourceFilesRecursively:[openPanel filenames]];
+        }
+    }];
+}
+
+- (IBAction)removeSelectedSourceFiles:(id)sender {
+    [currentProject removeSourceFileAtIndexes:[sourceFilesTable selectedRowIndexes]];
+    [sourceFilesTable deselectAll:nil];
+    [sourceFilesTable reloadData];
+}
+
 
 #pragma mark Window delegate
 

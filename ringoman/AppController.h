@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 @class RMInitialSetupWindow;
+@class RMProject;
 
 @interface AppController : NSObject<NSWindowDelegate> {
 @private
+    IBOutlet NSTableView *sourceFilesTable;
     IBOutlet NSWindow *mainWindow;
     IBOutlet RMInitialSetupWindow *initialSetupWindow;
+    IBOutlet RMProject *currentProject;
 }
 
 @end
