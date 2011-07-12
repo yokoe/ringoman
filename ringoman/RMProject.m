@@ -15,7 +15,9 @@
 #pragma mark Adding source file
 
 - (void)addSourceFile:(NSString*)filename {
-    [files addObject:filename];
+    if (![files containsObject:filename]) {
+        [files addObject:filename];
+    }
 }
 
 #pragma mark Deleting source file
