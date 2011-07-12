@@ -7,12 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class AppController;
 
 @interface ringomanAppDelegate : NSObject <NSApplicationDelegate> {
 @private
     NSWindow *window;
+    AppController *appController;
 }
-
+@property (assign) IBOutlet AppController *appController;
 @property (assign) IBOutlet NSWindow *window;
 
 @end

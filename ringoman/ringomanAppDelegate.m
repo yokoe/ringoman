@@ -10,11 +10,12 @@
 
 @implementation ringomanAppDelegate
 
+@synthesize appController;
 @synthesize window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    [appController performSelector:@selector(initialSetup) withObject:nil afterDelay:0.1f];
 }
 
 // This app should terminate after last window closed.

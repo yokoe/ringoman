@@ -52,6 +52,16 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
 
 #pragma mark Initial setup
 
+- (void)initialSetup {
+    // TODO: Check if setting is okay.
+    
+    NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
+    if (pathForBinary) {
+        [initialSetupWindow.pathLabel setStringValue:pathForBinary];
+    }
+    [NSApp beginSheet:initialSetupWindow modalForWindow:mainWindow modalDelegate:self didEndSelector:@selector(initialSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+}
+
 - (void)initialSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     [sheet close];
@@ -80,13 +90,7 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
 #pragma mark Window delegate
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
-    // TODO: Check if setting is okay.
     
-    NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
-    if (pathForBinary) {
-        [initialSetupWindow.pathLabel setStringValue:pathForBinary];
-    }
-    [NSApp beginSheet:initialSetupWindow modalForWindow:mainWindow modalDelegate:self didEndSelector:@selector(initialSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 
 #pragma mark - 
