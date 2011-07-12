@@ -17,5 +17,6 @@
     IBOutlet RMInitialSetupWindow *initialSetupWindow;
     IBOutlet RMProject *currentProject;
 }
-
+@property (readonly) RMProject* currentProject;
+@property (readonly) NSTableView* sourceFilesTable;
 @end

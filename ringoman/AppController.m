@@ -16,6 +16,7 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
 
 
 @implementation AppController
+@synthesize currentProject, sourceFilesTable;
 
 - (void)showAlert:(NSString*)message {
     NSRunAlertPanel(message, nil, @"OK", nil, nil);
@@ -117,7 +118,6 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
             }
         }
     }
-    [sourceFilesTable reloadData];
 }
 
 - (IBAction)addSourceFiles:(id)sender {
@@ -127,6 +127,10 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
     [openPanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             [self addSourceFilesRecursively:[openPanel filenames]];
+            [sourceFilesTable reloadData];
+            
+            // For improving development productivity.
+            [[NSUserDefaults standardUserDefaults] setObject:currentProject.files forKey:@"source_files"];
         }
     }];
 }
@@ -135,6 +139,9 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
     [currentProject removeSourceFileAtIndexes:[sourceFilesTable selectedRowIndexes]];
     [sourceFilesTable deselectAll:nil];
     [sourceFilesTable reloadData];
+    
+    // For improving development productivity.
+    [[NSUserDefaults standardUserDefaults] setObject:currentProject.files forKey:@"source_files"];
 }
 
 #pragma mark Generate
