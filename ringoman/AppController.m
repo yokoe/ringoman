@@ -91,6 +91,7 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
 #pragma mark Source file list
 
 - (void)addSourceFilesRecursively:(NSArray*)filenames {
+    NSArray *allowedFileExtensions = [NSArray arrayWithObjects:@"h", @"m", @"mm", nil];
     for (NSString* filename in filenames) {
         BOOL isDirectory = NO;
         if ([[NSFileManager defaultManager] fileExistsAtPath:filename isDirectory:&isDirectory]) {
@@ -107,7 +108,12 @@ static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
                     NSLog(@"Error at adding source files. %@", error);
                 }
             } else {
-                [currentProject addSourceFile:filename];
+                // Allows .h, .m, .mm files.
+                for (NSString* allowedExtension in allowedFileExtensions) {
+                    if ([[filename pathExtension] isEqualToString:allowedExtension]) {
+                        [currentProject addSourceFile:filename];
+                    }
+                }
             }
         }
     }
