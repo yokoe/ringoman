@@ -11,7 +11,14 @@
 #import "RMInitialSetupWindow.h"
 
 
+static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
+
+
 @implementation AppController
+
+- (void)showAlert:(NSString*)message {
+    NSRunAlertPanel(message, nil, @"OK", nil, nil);
+}
 
 - (NSString*)fetchVersionOfAppledocWithBinaryPath:(NSString*)binaryPath {
     
@@ -56,11 +63,17 @@
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
     [openPanel setAllowedFileTypes:[NSArray arrayWithObject:@""]];
     [openPanel beginSheetModalForWindow:initialSetupWindow completionHandler:^(NSInteger result) {
-        
-        // Checks if the binary is valid.
-        NSString* version = [self fetchVersionOfAppledocWithBinaryPath:[openPanel filename]];
-        NSLog(@"version = %@", version);
-        [initialSetupWindow.pathLabel setStringValue:[openPanel filename]];
+        if (result == NSFileHandlingPanelOKButton) {        
+            // Checks if the binary is valid.
+            NSString* version = [self fetchVersionOfAppledocWithBinaryPath:[openPanel filename]];
+            if (version != nil) { // Valid
+                NSString* pathForBinary = [openPanel filename];
+                [[NSUserDefaults standardUserDefaults] setObject:pathForBinary forKey:kSettingKeyAppledocBinPath];
+                [initialSetupWindow.pathLabel setStringValue:pathForBinary];
+            } else { // Invalid
+                [self performSelector:@selector(showAlert:) withObject:@"Invalid binary." afterDelay:0.1f];
+            }
+        }
     }];
 }
 
@@ -69,6 +82,10 @@
 - (void)windowDidBecomeMain:(NSNotification *)notification {
     // TODO: Check if setting is okay.
     
+    NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
+    if (pathForBinary) {
+        [initialSetupWindow.pathLabel setStringValue:pathForBinary];
+    }
     [NSApp beginSheet:initialSetupWindow modalForWindow:mainWindow modalDelegate:self didEndSelector:@selector(initialSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 
