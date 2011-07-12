@@ -13,6 +13,7 @@
 @interface RMGenerator()
 @property (nonatomic, retain) RMProject* project;
 @property (nonatomic, retain) NSString* outputDirectory;
+- (NSString*)copySourceFilesToTemporaryDirectory;
 - (void)execute;
 @end
 
@@ -22,10 +23,44 @@
 
 #pragma mark Private methods
 
+- (NSString*)copySourceFilesToTemporaryDirectory {
+    NSString* tmpDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:@"ringoman/sources"];
+    NSError* error = nil;
+    
+    // Remove temp directory if exists
+    if ([[NSFileManager defaultManager] fileExistsAtPath:tmpDirectory]) {
+        [[NSFileManager defaultManager] removeItemAtPath:tmpDirectory error:&error];
+        if (error) {
+            NSLog(@"Error at removing temp directory. %@", error);
+            return nil;
+        }
+    }
+    
+    // Create tmp directory
+    [[NSFileManager defaultManager] createDirectoryAtPath:tmpDirectory withIntermediateDirectories:YES attributes:nil error:&error];
+    if (error) {
+        NSLog(@"Error at copying source files. %@", error);
+        return nil;
+    }
+    
+    // Copy source files
+    for (NSString* filepath in project.files) {
+        NSString* filename = [filepath lastPathComponent];
+        [[NSFileManager defaultManager] copyItemAtPath:filepath toPath:[tmpDirectory stringByAppendingPathComponent:filename] error:&error];
+        if (error) {
+            NSLog(@"Warning: File copying error at %@, %@", filename, error);
+        }
+    }
+    
+    NSLog(@"copied to %@", tmpDirectory);
+    
+    return tmpDirectory;
+}
+
 - (void)execute {
     NSLog(@"%@", outputDirectory);
     
-    // Copy source files to temp directory.
+    [self copySourceFilesToTemporaryDirectory];
 }
 
 #pragma mark Public methods
