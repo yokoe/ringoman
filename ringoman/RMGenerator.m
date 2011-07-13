@@ -66,12 +66,11 @@
     
     NSMutableArray* arguments = [NSMutableArray array];
     
-    // Dummy data
     [arguments addObject:@"--project-name"];
-    [arguments addObject:@"Ringoman"];
+    [arguments addObject:project.projectName];
     
     [arguments addObject:@"--project-company"];
-    [arguments addObject:@"Ringoman"];
+    [arguments addObject:project.projectCompany];
     
     [arguments addObject:@"--create-html"];
     

@@ -14,8 +14,12 @@
 @interface RMProject : NSObject <NSTableViewDataSource> {
 @private
     NSMutableArray* files;
+    NSString* projectCompany;
+    NSString* projectName;
 }
 @property (readonly) NSMutableArray* files;
+@property (retain) NSString* projectCompany;
+@property (retain) NSString* projectName;
 
 - (void)addSourceFile:(NSString*)filename;
 - (void)removeSourceFileAtIndexes:(NSIndexSet*)indexes;

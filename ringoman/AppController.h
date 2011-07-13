@@ -12,6 +12,8 @@
 
 @interface AppController : NSObject<NSWindowDelegate> {
 @private
+    IBOutlet NSTextField *projectCompanyText;
+    IBOutlet NSTextField *projectNameText;
     IBOutlet NSTableView *sourceFilesTable;
     IBOutlet NSWindow *mainWindow;
     IBOutlet RMInitialSetupWindow *initialSetupWindow;

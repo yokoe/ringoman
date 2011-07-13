@@ -151,6 +151,8 @@
     [openPanel setCanCreateDirectories:YES];
     [openPanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
+            currentProject.projectCompany = [projectCompanyText stringValue];
+            currentProject.projectName = [projectNameText stringValue];
             [RMGenerator generateWithProject:currentProject outputDirectory:[openPanel filename]];
         }
     }];

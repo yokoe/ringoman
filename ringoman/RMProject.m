@@ -10,7 +10,7 @@
 
 
 @implementation RMProject
-@synthesize files;
+@synthesize files, projectCompany, projectName;
 
 #pragma mark Adding source file
 
@@ -59,6 +59,8 @@
 
 - (void)dealloc
 {
+    self.projectCompany = nil;
+    self.projectName = nil;
     [files release];
     [super dealloc];
 }
