@@ -12,8 +12,6 @@
 #import "RMInitialSetupWindow.h"
 #import "RMProject.h"
 
-static NSString* const kSettingKeyAppledocBinPath = @"appledoc_bin_path";
-
 
 @implementation AppController
 @synthesize currentProject, sourceFilesTable;

@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-
+/**
+ * RMProject class manages source files to generate docs.
+ */
 @interface RMProject : NSObject <NSTableViewDataSource> {
 @private
     NSMutableArray* files;

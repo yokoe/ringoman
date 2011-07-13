@@ -20,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1945D2E213CDE36F008ACA46 /* RMGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGlobal.h; sourceTree = "<group>"; };
 		195DC5F013CB499D0073A85A /* ringoman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ringoman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		195DC5F413CB499D0073A85A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		195DC5F713CB499D0073A85A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +107,7 @@
 				19895BA613CC977600834DB4 /* RMProject.m */,
 				19895BA913CC9FE800834DB4 /* RMGenerator.h */,
 				19895BAA13CC9FE800834DB4 /* RMGenerator.m */,
+				1945D2E213CDE36F008ACA46 /* RMGlobal.h */,
 			);
 			path = ringoman;
 			sourceTree = "<group>";

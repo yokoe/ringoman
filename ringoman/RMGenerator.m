@@ -57,10 +57,57 @@
     return tmpDirectory;
 }
 
+- (void)runCommandWithCopiedDirectory:(NSString*)copiedDirectory {
+    
+    NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
+    
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:pathForBinary];
+    
+    NSMutableArray* arguments = [NSMutableArray array];
+    
+    // Dummy data
+    [arguments addObject:@"--project-name"];
+    [arguments addObject:@"Ringoman"];
+    
+    [arguments addObject:@"--project-company"];
+    [arguments addObject:@"Ringoman"];
+    
+    [arguments addObject:@"--create-html"];
+    
+    // Output directory
+    [arguments addObject:@"--output"];
+    [arguments addObject:outputDirectory];
+    
+    [arguments addObject:copiedDirectory]; // Source files directory at last.
+    
+    [task setArguments:arguments];
+    
+    NSPipe *pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    
+    NSFileHandle *file = [pipe fileHandleForReading];
+    
+    [task launch];
+    
+    NSData *data = [file readDataToEndOfFile];
+    
+    NSString *string = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] autorelease];
+    [task release];
+    
+    NSLog(@"%@", string);
+}
+
 - (void)execute {
     NSLog(@"%@", outputDirectory);
     
-    [self copySourceFilesToTemporaryDirectory];
+    NSString* copiedDirectory = [self copySourceFilesToTemporaryDirectory];
+    if (copiedDirectory == nil) {
+        NSLog(@"Failed to copy source files.");
+        return;
+    }
+    
+    [self runCommandWithCopiedDirectory:copiedDirectory];
 }
 
 #pragma mark Public methods
