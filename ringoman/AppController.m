@@ -50,7 +50,7 @@
     }
 }
 
-#pragma mark Load settings
+#pragma mark Load and save settings
 
 - (void)loadPreviousSettings {
     NSArray* sourceFiles = [[NSUserDefaults standardUserDefaults] objectForKey:@"source_files"];
@@ -60,6 +60,15 @@
             [sourceFilesTable reloadData];
         }
     }
+    [projectCompanyText setStringValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"project_company"]];
+    [projectNameText setStringValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"project_name"]];
+    [createHTMLCheck setState:[[[NSUserDefaults standardUserDefaults] objectForKey:@"create_html"] boolValue]];
+}
+
+- (void)saveCurrentSettings {
+    [[NSUserDefaults standardUserDefaults] setObject:currentProject.projectCompany forKey:@"project_company"];
+    [[NSUserDefaults standardUserDefaults] setObject:currentProject.projectName forKey:@"project_name"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:currentProject.createHTML] forKey:@"create_html"];
 }
 
 #pragma mark Initial setup
@@ -166,6 +175,7 @@
             currentProject.projectCompany = [projectCompanyText stringValue];
             currentProject.projectName = [projectNameText stringValue];
             currentProject.createHTML = ([createHTMLCheck state] == NSOnState);
+            [self saveCurrentSettings];
             [RMGenerator generateWithProject:currentProject outputDirectory:[openPanel filename]];
         }
     }];
