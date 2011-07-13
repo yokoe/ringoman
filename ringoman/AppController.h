@@ -22,4 +22,6 @@
 }
 @property (readonly) RMProject* currentProject;
 @property (readonly) NSTableView* sourceFilesTable;
+
+- (void)loadPreviousSettings;
 @end

@@ -50,6 +50,18 @@
     }
 }
 
+#pragma mark Load settings
+
+- (void)loadPreviousSettings {
+    NSArray* sourceFiles = [[NSUserDefaults standardUserDefaults] objectForKey:@"source_files"];
+    if (sourceFiles) {
+        for (NSString* sourceFile in sourceFiles) {
+            [currentProject addSourceFile:sourceFile];
+            [sourceFilesTable reloadData];
+        }
+    }
+}
+
 #pragma mark Initial setup
 
 - (void)initialSetup {
