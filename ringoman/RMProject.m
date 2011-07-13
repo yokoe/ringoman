@@ -10,7 +10,7 @@
 
 
 @implementation RMProject
-@synthesize files, projectCompany, projectName;
+@synthesize createHTML, files, projectCompany, projectName;
 
 #pragma mark Adding source file
 

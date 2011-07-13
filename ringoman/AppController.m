@@ -153,6 +153,7 @@
         if (result == NSFileHandlingPanelOKButton) {
             currentProject.projectCompany = [projectCompanyText stringValue];
             currentProject.projectName = [projectNameText stringValue];
+            currentProject.createHTML = ([createHTMLCheck state] == NSOnState);
             [RMGenerator generateWithProject:currentProject outputDirectory:[openPanel filename]];
         }
     }];

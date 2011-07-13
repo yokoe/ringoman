@@ -12,6 +12,7 @@
 
 @interface AppController : NSObject<NSWindowDelegate> {
 @private
+    IBOutlet NSButton *createHTMLCheck;
     IBOutlet NSTextField *projectCompanyText;
     IBOutlet NSTextField *projectNameText;
     IBOutlet NSTableView *sourceFilesTable;

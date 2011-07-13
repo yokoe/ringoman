@@ -2646,6 +2646,14 @@
 					</object>
 					<int key="connectionID">591</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">createHTMLCheck</string>
+						<reference key="source" ref="1000701923"/>
+						<reference key="destination" ref="1021891642"/>
+					</object>
+					<int key="connectionID">592</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -4558,7 +4566,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">591</int>
+			<int key="maxID">592</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4573,6 +4581,7 @@
 							<string>currentProject</string>
 							<string>initialSetupWindow</string>
 							<string>mainWindow</string>
+							<string>projectCompanyText</string>
 							<string>projectNameText</string>
 							<string>sourceFilesTable</string>
 						</object>
@@ -4581,6 +4590,7 @@
 							<string>RMProject</string>
 							<string>RMInitialSetupWindow</string>
 							<string>NSWindow</string>
+							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSTableView</string>
 						</object>
@@ -4592,6 +4602,7 @@
 							<string>currentProject</string>
 							<string>initialSetupWindow</string>
 							<string>mainWindow</string>
+							<string>projectCompanyText</string>
 							<string>projectNameText</string>
 							<string>sourceFilesTable</string>
 						</object>
@@ -4608,6 +4619,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">mainWindow</string>
 								<string key="candidateClassName">NSWindow</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">projectCompanyText</string>
+								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">projectNameText</string>

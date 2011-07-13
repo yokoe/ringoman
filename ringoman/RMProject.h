@@ -16,10 +16,12 @@
     NSMutableArray* files;
     NSString* projectCompany;
     NSString* projectName;
+    BOOL createHTML;
 }
 @property (readonly) NSMutableArray* files;
 @property (retain) NSString* projectCompany;
 @property (retain) NSString* projectName;
+@property (assign) BOOL createHTML;
 
 - (void)addSourceFile:(NSString*)filename;
 - (void)removeSourceFileAtIndexes:(NSIndexSet*)indexes;

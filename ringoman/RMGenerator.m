@@ -72,7 +72,9 @@
     [arguments addObject:@"--project-company"];
     [arguments addObject:project.projectCompany];
     
-    [arguments addObject:@"--create-html"];
+    if (project.createHTML) {
+        [arguments addObject:@"--create-html"];
+    }
     
     // Output directory
     [arguments addObject:@"--output"];
