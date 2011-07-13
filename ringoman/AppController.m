@@ -166,15 +166,37 @@
 #pragma mark Generate
 
 - (IBAction)selectOutputDirectory:(id)sender {
+    // Prepare
+    currentProject.projectCompany = [projectCompanyText stringValue];
+    currentProject.projectName = [projectNameText stringValue];
+    currentProject.createHTML = ([createHTMLCheck state] == NSOnState);
+    
+    // Validations
+    NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
+    if (pathForBinary == nil) {
+        NSRunAlertPanel(@"Error", @"The path for appledoc binary is not set.", @"OK", nil, nil);
+        return;
+    }
+    if (currentProject.projectCompany == nil || [currentProject.projectCompany length] == 0) {
+        NSRunAlertPanel(@"Error", @"Project company cannot be nil.", @"OK", nil, nil);
+        return;
+    }
+    if (currentProject.projectName == nil || [currentProject.projectName length] == 0) {
+        NSRunAlertPanel(@"Error", @"Project name cannot be nil.", @"OK", nil, nil);
+        return;
+    }
+    if (currentProject.files == nil || [currentProject.files count] == 0) {
+        NSRunAlertPanel(@"Error", @"No source files selected.", @"OK", nil, nil);
+        return;
+    }
+    
+    // Then go
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
     [openPanel setCanChooseFiles:NO];
     [openPanel setCanChooseDirectories:YES];
     [openPanel setCanCreateDirectories:YES];
     [openPanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
-            currentProject.projectCompany = [projectCompanyText stringValue];
-            currentProject.projectName = [projectNameText stringValue];
-            currentProject.createHTML = ([createHTMLCheck state] == NSOnState);
             [self saveCurrentSettings];
             [RMGenerator generateWithProject:currentProject outputDirectory:[openPanel filename]];
         }
