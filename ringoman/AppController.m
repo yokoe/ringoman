@@ -72,15 +72,20 @@
 }
 
 #pragma mark Initial setup
-
-- (void)initialSetup {
-    // TODO: Check if setting is okay.
-    
+- (IBAction)openPreferences:(id)sender {
     NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
     if (pathForBinary) {
         [initialSetupWindow.pathLabel setStringValue:pathForBinary];
     }
     [NSApp beginSheet:initialSetupWindow modalForWindow:mainWindow modalDelegate:self didEndSelector:@selector(initialSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+}
+
+- (void)initialSetup {
+    // Open preferences when path for binary is nil.
+    NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
+    if (pathForBinary == nil) {
+        [self openPreferences:nil];
+    }
 }
 
 - (void)initialSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
