@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		192C1CCE13CF3438001FCC9D /* NSUserDefaults+GetterExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C1CCD13CF3438001FCC9D /* NSUserDefaults+GetterExt.m */; };
 		195DC5F513CB499D0073A85A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 195DC5F413CB499D0073A85A /* Cocoa.framework */; };
 		195DC5FF13CB499D0073A85A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 195DC5FD13CB499D0073A85A /* InfoPlist.strings */; };
 		195DC60213CB499D0073A85A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC60113CB499D0073A85A /* main.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		192C1CCC13CF3438001FCC9D /* NSUserDefaults+GetterExt.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSUserDefaults+GetterExt.h"; sourceTree = "<group>"; };
+		192C1CCD13CF3438001FCC9D /* NSUserDefaults+GetterExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+GetterExt.m"; sourceTree = "<group>"; };
 		1945D2E213CDE36F008ACA46 /* RMGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGlobal.h; sourceTree = "<group>"; };
 		195DC5F013CB499D0073A85A /* ringoman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ringoman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		195DC5F413CB499D0073A85A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -108,6 +111,8 @@
 				19895BA913CC9FE800834DB4 /* RMGenerator.h */,
 				19895BAA13CC9FE800834DB4 /* RMGenerator.m */,
 				1945D2E213CDE36F008ACA46 /* RMGlobal.h */,
+				192C1CCC13CF3438001FCC9D /* NSUserDefaults+GetterExt.h */,
+				192C1CCD13CF3438001FCC9D /* NSUserDefaults+GetterExt.m */,
 			);
 			path = ringoman;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				195DC61613CB4CEE0073A85A /* RMInitialSetupWindow.m in Sources */,
 				19895BA713CC977600834DB4 /* RMProject.m in Sources */,
 				19895BAB13CC9FE800834DB4 /* RMGenerator.m in Sources */,
+				192C1CCE13CF3438001FCC9D /* NSUserDefaults+GetterExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

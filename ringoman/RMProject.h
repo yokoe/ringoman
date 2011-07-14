@@ -26,4 +26,6 @@
 - (void)addSourceFile:(NSString*)filename;
 - (void)removeSourceFileAtIndexes:(NSIndexSet*)indexes;
 
+- (BOOL)writeToFile:(NSString*)filename;
+
 @end

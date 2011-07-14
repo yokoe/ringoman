@@ -26,6 +26,19 @@
     [files removeObjectsAtIndexes:indexes];
 }
 
+#pragma mark Write to file
+
+- (NSDictionary*)dictionaryRepresentation {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    [dictionary setObject:files forKey:@"files"];
+    [dictionary setObject:projectCompany forKey:@"project_company"];
+    [dictionary setObject:projectName forKey:@"project_name"];
+    return dictionary;
+}
+
+- (BOOL)writeToFile:(NSString*)filename {
+    return [[self dictionaryRepresentation] writeToFile:filename atomically:YES];
+}
 
 #pragma mark NSTableViewDataSourceProtocol
 

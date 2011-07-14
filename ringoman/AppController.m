@@ -50,6 +50,30 @@
     }
 }
 
+- (void)setValuesToProject {
+    currentProject.projectCompany = [projectCompanyText stringValue];
+    currentProject.projectName = [projectNameText stringValue];
+    currentProject.createHTML = ([createHTMLCheck state] == NSOnState);
+}
+
+#pragma mark Load and Save project
+
+- (IBAction)openProject:(id)sender {
+    
+}
+- (IBAction)saveAsNewProject:(id)sender {
+    NSSavePanel* savePanel = [NSSavePanel savePanel];
+    [savePanel setAllowedFileTypes:[NSArray arrayWithObject:kRMProjectFileExtenstion]];
+    [savePanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            [self setValuesToProject];
+            if (![currentProject writeToFile:[savePanel filename]]) {
+                NSLog(@"Failed to save project.");
+            }
+        }
+    }];
+}
+
 #pragma mark Load and save settings
 
 - (void)loadPreviousSettings {
@@ -60,9 +84,9 @@
             [sourceFilesTable reloadData];
         }
     }
-    [projectCompanyText setStringValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"project_company"]];
-    [projectNameText setStringValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"project_name"]];
-    [createHTMLCheck setState:[[[NSUserDefaults standardUserDefaults] objectForKey:@"create_html"] boolValue]];
+    [projectCompanyText setStringValue:[[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_company" defaultValue:@""]];
+    [projectNameText setStringValue:[[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_name" defaultValue:@""]];
+    [createHTMLCheck setState:[[NSUserDefaults standardUserDefaults] boolForKey:@"create_html"]];
 }
 
 - (void)saveCurrentSettings {
@@ -172,9 +196,7 @@
 
 - (IBAction)selectOutputDirectory:(id)sender {
     // Prepare
-    currentProject.projectCompany = [projectCompanyText stringValue];
-    currentProject.projectName = [projectNameText stringValue];
-    currentProject.createHTML = ([createHTMLCheck state] == NSOnState);
+    [self setValuesToProject];
     
     // Validations
     NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
