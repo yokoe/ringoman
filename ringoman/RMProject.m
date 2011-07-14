@@ -9,6 +9,11 @@
 #import "RMProject.h"
 
 
+static NSString* const kFileKeyForFiles = @"files";
+static NSString* const kFileKeyForProjectCompany = @"project_company";
+static NSString* const kFileKeyForProjectName = @"project_name";
+
+
 @implementation RMProject
 @synthesize createHTML, files, projectCompany, projectName;
 
@@ -26,13 +31,36 @@
     [files removeObjectsAtIndexes:indexes];
 }
 
+#pragma mark Load from file
+
+- (BOOL)loadFromDictionary:(NSDictionary*)dictionary {
+    if (files) {
+        [files release];
+        files = nil;
+    }
+    files = [[NSMutableArray arrayWithArray:[dictionary objectForKey:kFileKeyForFiles]] retain];
+    self.projectCompany = [dictionary objectForKey:kFileKeyForProjectCompany];
+    self.projectName = [dictionary objectForKey:kFileKeyForProjectName];
+    return YES;
+}
+
+- (BOOL)loadFromFile:(NSString *)filename {
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:filename];
+    if (dictionary) {
+        [self loadFromDictionary:dictionary];
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 #pragma mark Write to file
 
 - (NSDictionary*)dictionaryRepresentation {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:files forKey:@"files"];
-    [dictionary setObject:projectCompany forKey:@"project_company"];
-    [dictionary setObject:projectName forKey:@"project_name"];
+    [dictionary setObject:files forKey:kFileKeyForFiles];
+    [dictionary setObject:projectCompany forKey:kFileKeyForProjectCompany];
+    [dictionary setObject:projectName forKey:kFileKeyForProjectName];
     return dictionary;
 }
 

@@ -50,6 +50,12 @@
     }
 }
 
+- (void)setValuesToUIFields {
+    [projectCompanyText setStringValue:currentProject.projectCompany];
+    [projectNameText setStringValue:currentProject.projectName];
+    [sourceFilesTable reloadData];
+}
+
 - (void)setValuesToProject {
     currentProject.projectCompany = [projectCompanyText stringValue];
     currentProject.projectName = [projectNameText stringValue];
@@ -59,7 +65,15 @@
 #pragma mark Load and Save project
 
 - (IBAction)openProject:(id)sender {
-    
+    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setAllowedFileTypes:[NSArray arrayWithObject:kRMProjectFileExtenstion]];
+    [openPanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
+        if ([currentProject loadFromFile:[openPanel filename]]) {
+            [self setValuesToUIFields];
+        } else {
+            NSLog(@"Failed to load project.");
+        }
+    }];
 }
 - (IBAction)saveAsNewProject:(id)sender {
     NSSavePanel* savePanel = [NSSavePanel savePanel];
@@ -81,12 +95,12 @@
     if (sourceFiles) {
         for (NSString* sourceFile in sourceFiles) {
             [currentProject addSourceFile:sourceFile];
-            [sourceFilesTable reloadData];
         }
     }
-    [projectCompanyText setStringValue:[[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_company" defaultValue:@""]];
-    [projectNameText setStringValue:[[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_name" defaultValue:@""]];
-    [createHTMLCheck setState:[[NSUserDefaults standardUserDefaults] boolForKey:@"create_html"]];
+    currentProject.projectCompany = [[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_company" defaultValue:@""];
+    currentProject.projectName = [[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_name" defaultValue:@""];
+    currentProject.createHTML = [[NSUserDefaults standardUserDefaults] boolForKey:@"create_html"];
+    [self setValuesToUIFields];
 }
 
 - (void)saveCurrentSettings {
