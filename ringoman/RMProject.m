@@ -12,10 +12,11 @@
 static NSString* const kFileKeyForFiles = @"files";
 static NSString* const kFileKeyForProjectCompany = @"project_company";
 static NSString* const kFileKeyForProjectName = @"project_name";
+static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 
 
 @implementation RMProject
-@synthesize createHTML, files, projectCompany, projectName;
+@synthesize createHTML, files, mergeCategories, projectCompany, projectName;
 
 #pragma mark Adding source file
 
@@ -41,6 +42,7 @@ static NSString* const kFileKeyForProjectName = @"project_name";
     files = [[NSMutableArray arrayWithArray:[dictionary objectForKey:kFileKeyForFiles]] retain];
     self.projectCompany = [dictionary objectForKey:kFileKeyForProjectCompany];
     self.projectName = [dictionary objectForKey:kFileKeyForProjectName];
+    self.mergeCategories = [[dictionary objectForKey:kFileKeyForMergeCategories] boolValue];
     return YES;
 }
 
@@ -61,6 +63,7 @@ static NSString* const kFileKeyForProjectName = @"project_name";
     [dictionary setObject:files forKey:kFileKeyForFiles];
     [dictionary setObject:projectCompany forKey:kFileKeyForProjectCompany];
     [dictionary setObject:projectName forKey:kFileKeyForProjectName];
+    [dictionary setObject:[NSNumber numberWithBool:mergeCategories] forKey:kFileKeyForMergeCategories];
     return dictionary;
 }
 

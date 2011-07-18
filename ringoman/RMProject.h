@@ -17,11 +17,13 @@
     NSString* projectCompany;
     NSString* projectName;
     BOOL createHTML;
+    BOOL mergeCategories;
 }
 @property (readonly) NSMutableArray* files;
 @property (retain) NSString* projectCompany;
 @property (retain) NSString* projectName;
 @property (assign) BOOL createHTML;
+@property (assign) BOOL mergeCategories;
 
 - (void)addSourceFile:(NSString*)filename;
 - (void)removeSourceFileAtIndexes:(NSIndexSet*)indexes;

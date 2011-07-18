@@ -53,13 +53,17 @@
 - (void)setValuesToUIFields {
     [projectCompanyText setStringValue:currentProject.projectCompany];
     [projectNameText setStringValue:currentProject.projectName];
+    [mergeCategoriesCheck setState:currentProject.mergeCategories];
     [sourceFilesTable reloadData];
 }
 
 - (void)setValuesToProject {
+#define RMCheckboxState(control) (([control state] == NSOnState))
     currentProject.projectCompany = [projectCompanyText stringValue];
     currentProject.projectName = [projectNameText stringValue];
-    currentProject.createHTML = ([createHTMLCheck state] == NSOnState);
+    currentProject.createHTML = RMCheckboxState(createHTMLCheck);
+    currentProject.mergeCategories = RMCheckboxState(mergeCategoriesCheck);
+#undef RMCheckboxState
 }
 
 #pragma mark Load and Save project
@@ -100,6 +104,7 @@
     currentProject.projectCompany = [[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_company" defaultValue:@""];
     currentProject.projectName = [[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_name" defaultValue:@""];
     currentProject.createHTML = [[NSUserDefaults standardUserDefaults] boolForKey:@"create_html"];
+    currentProject.mergeCategories = [[NSUserDefaults standardUserDefaults] boolForKey:@"merge_categories"];
     [self setValuesToUIFields];
 }
 
@@ -107,6 +112,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:currentProject.projectCompany forKey:@"project_company"];
     [[NSUserDefaults standardUserDefaults] setObject:currentProject.projectName forKey:@"project_name"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:currentProject.createHTML] forKey:@"create_html"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:currentProject.mergeCategories] forKey:@"merge_categories"];
 }
 
 #pragma mark Initial setup

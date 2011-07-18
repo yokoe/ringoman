@@ -75,6 +75,9 @@
     if (project.createHTML) {
         [arguments addObject:@"--create-html"];
     }
+    if (project.mergeCategories) {
+        [arguments addObject:@"--merge-categories"];
+    }
     
     // Output directory
     [arguments addObject:@"--output"];
