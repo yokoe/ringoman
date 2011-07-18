@@ -101,18 +101,12 @@
             [currentProject addSourceFile:sourceFile];
         }
     }
-    currentProject.projectCompany = [[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_company" defaultValue:@""];
-    currentProject.projectName = [[NSUserDefaults standardUserDefaults] stringValueForKey:@"project_name" defaultValue:@""];
-    currentProject.createHTML = [[NSUserDefaults standardUserDefaults] boolForKey:@"create_html"];
-    currentProject.mergeCategories = [[NSUserDefaults standardUserDefaults] boolForKey:@"merge_categories"];
+    [currentProject loadFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"previous_project_settings"]];
     [self setValuesToUIFields];
 }
 
 - (void)saveCurrentSettings {
-    [[NSUserDefaults standardUserDefaults] setObject:currentProject.projectCompany forKey:@"project_company"];
-    [[NSUserDefaults standardUserDefaults] setObject:currentProject.projectName forKey:@"project_name"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:currentProject.createHTML] forKey:@"create_html"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:currentProject.mergeCategories] forKey:@"merge_categories"];
+    [[NSUserDefaults standardUserDefaults] setObject:[currentProject dictionaryRepresentation] forKey:@"previous_project_settings"];
 }
 
 #pragma mark Initial setup

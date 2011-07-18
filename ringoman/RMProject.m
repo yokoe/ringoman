@@ -35,6 +35,9 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 #pragma mark Load from file
 
 - (BOOL)loadFromDictionary:(NSDictionary*)dictionary {
+    if (dictionary == nil) {
+        return NO;
+    }
     if (files) {
         [files release];
         files = nil;
