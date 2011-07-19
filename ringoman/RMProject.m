@@ -44,12 +44,16 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
         files = nil;
     }
     
-    NSMutableArray *absoluteFilePaths = [NSMutableArray array];
-    for (NSString* relativeFilePath in [dictionary objectForKey:kFileKeyForFiles]) {
-        [absoluteFilePaths addObject:[relativeFilePath absolutePathStringWithBasePath:basePath]];
+    if (basePath) {
+        NSMutableArray *absoluteFilePaths = [NSMutableArray array];
+        for (NSString* relativeFilePath in [dictionary objectForKey:kFileKeyForFiles]) {
+            [absoluteFilePaths addObject:[relativeFilePath absolutePathStringWithBasePath:basePath]];
+        }
+        
+        files = [absoluteFilePaths retain];
+    } else {
+        files = [[NSMutableArray arrayWithArray:[dictionary objectForKey:kFileKeyForFiles]] retain];
     }
-    
-    files = [absoluteFilePaths retain];
     self.projectCompany = [dictionary objectForKey:kFileKeyForProjectCompany];
     self.projectName = [dictionary objectForKey:kFileKeyForProjectName];
     self.mergeCategories = [[dictionary objectForKey:kFileKeyForMergeCategories] boolValue];

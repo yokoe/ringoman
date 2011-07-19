@@ -51,10 +51,12 @@
 }
 
 - (void)setValuesToUIFields {
-    [projectCompanyText setStringValue:currentProject.projectCompany];
-    [projectNameText setStringValue:currentProject.projectName];
+#define RMSetStringValueToTextField(control, value) (([control setStringValue:value ? value : @""]))
+    RMSetStringValueToTextField(projectCompanyText, currentProject.projectCompany);
+    RMSetStringValueToTextField(projectNameText, currentProject.projectName);
     [mergeCategoriesCheck setState:currentProject.mergeCategories];
     [sourceFilesTable reloadData];
+#undef RMSetStringValueToTextField
 }
 
 - (void)setValuesToProject {
@@ -101,7 +103,7 @@
             [currentProject addSourceFile:sourceFile];
         }
     }
-    [currentProject loadFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"previous_project_settings"]];
+    [currentProject loadFromDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"previous_project_settings"] withBasePath:nil];
     [self setValuesToUIFields];
 }
 
