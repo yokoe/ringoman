@@ -114,8 +114,12 @@
 #pragma mark Initial setup
 - (IBAction)openPreferences:(id)sender {
     NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
+    NSString* pathForTemplate = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyTemplateDirectoryPath];
     if (pathForBinary) {
         [initialSetupWindow.pathLabel setStringValue:pathForBinary];
+    }
+    if (pathForTemplate) {
+        [initialSetupWindow.templatePathLabel setStringValue:pathForTemplate];
     }
     [NSApp beginSheet:initialSetupWindow modalForWindow:mainWindow modalDelegate:self didEndSelector:@selector(initialSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
@@ -123,7 +127,8 @@
 - (void)initialSetup {
     // Open preferences when path for binary is nil.
     NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
-    if (pathForBinary == nil) {
+    NSString* pathForTemplate = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyTemplateDirectoryPath];
+    if (pathForBinary == nil || pathForTemplate == nil) {
         [self openPreferences:nil];
     }
 }
@@ -149,6 +154,26 @@
             } else { // Invalid
                 [self performSelector:@selector(showAlert:) withObject:@"Invalid binary." afterDelay:0.1f];
             }
+        }
+    }];
+}
+- (IBAction)openSheetForChoosingTemplateDirectory:(id)sender {
+    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setAllowedFileTypes:[NSArray arrayWithObject:@""]];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanCreateDirectories:NO];
+    
+    NSString* currentPath = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyTemplateDirectoryPath];
+    if (currentPath) {
+        [openPanel setDirectory:currentPath];
+    }
+    
+    [openPanel beginSheetModalForWindow:initialSetupWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {        
+            NSString* pathForTemplate = [openPanel filename];
+            [[NSUserDefaults standardUserDefaults] setObject:pathForTemplate forKey:kSettingKeyTemplateDirectoryPath];
+            [initialSetupWindow.templatePathLabel setStringValue:pathForTemplate];
         }
     }];
 }
