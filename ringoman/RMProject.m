@@ -8,6 +8,7 @@
 
 #import "RMProject.h"
 
+#import "NSString+RelativePathExt.h"
 
 static NSString* const kFileKeyForFiles = @"files";
 static NSString* const kFileKeyForProjectCompany = @"project_company";
@@ -34,7 +35,7 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 
 #pragma mark Load from file
 
-- (BOOL)loadFromDictionary:(NSDictionary*)dictionary {
+- (BOOL)loadFromDictionary:(NSDictionary*)dictionary withBasePath:(NSString*)basePath{
     if (dictionary == nil) {
         return NO;
     }
@@ -42,7 +43,13 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
         [files release];
         files = nil;
     }
-    files = [[NSMutableArray arrayWithArray:[dictionary objectForKey:kFileKeyForFiles]] retain];
+    
+    NSMutableArray *absoluteFilePaths = [NSMutableArray array];
+    for (NSString* relativeFilePath in [dictionary objectForKey:kFileKeyForFiles]) {
+        [absoluteFilePaths addObject:[relativeFilePath absolutePathStringWithBasePath:basePath]];
+    }
+    
+    files = [absoluteFilePaths retain];
     self.projectCompany = [dictionary objectForKey:kFileKeyForProjectCompany];
     self.projectName = [dictionary objectForKey:kFileKeyForProjectName];
     self.mergeCategories = [[dictionary objectForKey:kFileKeyForMergeCategories] boolValue];
@@ -52,7 +59,7 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 - (BOOL)loadFromFile:(NSString *)filename {
     NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:filename];
     if (dictionary) {
-        [self loadFromDictionary:dictionary];
+        [self loadFromDictionary:dictionary withBasePath:[filename stringByDeletingLastPathComponent]];
         return YES;
     } else {
         return NO;
@@ -71,7 +78,19 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 }
 
 - (BOOL)writeToFile:(NSString*)filename {
-    return [[self dictionaryRepresentation] writeToFile:filename atomically:YES];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryRepresentation]];
+    NSArray *absoluteFilePaths = [dictionary objectForKey:kFileKeyForFiles];
+    NSMutableArray* relativeFilePaths = [NSMutableArray array];
+    
+    NSString* basePath = [filename stringByDeletingLastPathComponent];
+    
+    for (NSString* absoluteFilePath in absoluteFilePaths) {
+        [relativeFilePaths addObject:[absoluteFilePath relativePathStringWithBasePath:basePath]];
+    }
+    
+    [dictionary setObject:relativeFilePaths forKey:kFileKeyForFiles];
+    
+    return [dictionary writeToFile:filename atomically:YES];
 }
 
 #pragma mark NSTableViewDataSourceProtocol

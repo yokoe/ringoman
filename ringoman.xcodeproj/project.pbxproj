@@ -16,6 +16,13 @@
 		195DC60B13CB499D0073A85A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195DC60913CB499D0073A85A /* MainMenu.xib */; };
 		195DC61313CB4B650073A85A /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC61213CB4B650073A85A /* AppController.m */; };
 		195DC61613CB4CEE0073A85A /* RMInitialSetupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 195DC61513CB4CEE0073A85A /* RMInitialSetupWindow.m */; };
+		196462F113D5B53E00CAB29B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196462F013D5B53E00CAB29B /* SenTestingKit.framework */; };
+		196462F213D5B53E00CAB29B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 195DC5F413CB499D0073A85A /* Cocoa.framework */; };
+		196462F813D5B53E00CAB29B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196462F613D5B53E00CAB29B /* InfoPlist.strings */; };
+		196462FA13D5B53E00CAB29B /* ringomanTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 196462F913D5B53E00CAB29B /* ringomanTests.h */; };
+		196462FC13D5B53E00CAB29B /* ringomanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 196462FB13D5B53E00CAB29B /* ringomanTests.m */; };
+		1964630413D5B59C00CAB29B /* NSString+RelativePathExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964630313D5B59C00CAB29B /* NSString+RelativePathExt.m */; };
+		1964630513D5B59C00CAB29B /* NSString+RelativePathExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964630313D5B59C00CAB29B /* NSString+RelativePathExt.m */; };
 		19895BA713CC977600834DB4 /* RMProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 19895BA613CC977600834DB4 /* RMProject.m */; };
 		19895BAB13CC9FE800834DB4 /* RMGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19895BAA13CC9FE800834DB4 /* RMGenerator.m */; };
 		198BB32713D3F8450081BF2D /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 198BB32613D3F8450081BF2D /* icon.icns */; };
@@ -42,6 +49,15 @@
 		195DC61213CB4B650073A85A /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		195DC61413CB4CEE0073A85A /* RMInitialSetupWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMInitialSetupWindow.h; sourceTree = "<group>"; };
 		195DC61513CB4CEE0073A85A /* RMInitialSetupWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMInitialSetupWindow.m; sourceTree = "<group>"; };
+		196462EF13D5B53E00CAB29B /* ringomanTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ringomanTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		196462F013D5B53E00CAB29B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		196462F513D5B53E00CAB29B /* ringomanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ringomanTests-Info.plist"; sourceTree = "<group>"; };
+		196462F713D5B53E00CAB29B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		196462F913D5B53E00CAB29B /* ringomanTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ringomanTests.h; sourceTree = "<group>"; };
+		196462FB13D5B53E00CAB29B /* ringomanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ringomanTests.m; sourceTree = "<group>"; };
+		196462FD13D5B53E00CAB29B /* ringomanTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ringomanTests-Prefix.pch"; sourceTree = "<group>"; };
+		1964630213D5B59C00CAB29B /* NSString+RelativePathExt.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSString+RelativePathExt.h"; sourceTree = "<group>"; };
+		1964630313D5B59C00CAB29B /* NSString+RelativePathExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RelativePathExt.m"; sourceTree = "<group>"; };
 		19895BA513CC977600834DB4 /* RMProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMProject.h; sourceTree = "<group>"; };
 		19895BA613CC977600834DB4 /* RMProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMProject.m; sourceTree = "<group>"; };
 		19895BA913CC9FE800834DB4 /* RMGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGenerator.h; sourceTree = "<group>"; };
@@ -58,6 +74,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		196462EB13D5B53E00CAB29B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196462F113D5B53E00CAB29B /* SenTestingKit.framework in Frameworks */,
+				196462F213D5B53E00CAB29B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -65,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				195DC5FA13CB499D0073A85A /* ringoman */,
+				196462F313D5B53E00CAB29B /* ringomanTests */,
 				195DC5F313CB499D0073A85A /* Frameworks */,
 				195DC5F113CB499D0073A85A /* Products */,
 			);
@@ -74,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				195DC5F013CB499D0073A85A /* ringoman.app */,
+				196462EF13D5B53E00CAB29B /* ringomanTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				195DC5F413CB499D0073A85A /* Cocoa.framework */,
+				196462F013D5B53E00CAB29B /* SenTestingKit.framework */,
 				195DC5F613CB499D0073A85A /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -115,6 +143,8 @@
 				1945D2E213CDE36F008ACA46 /* RMGlobal.h */,
 				192C1CCC13CF3438001FCC9D /* NSUserDefaults+GetterExt.h */,
 				192C1CCD13CF3438001FCC9D /* NSUserDefaults+GetterExt.m */,
+				1964630213D5B59C00CAB29B /* NSString+RelativePathExt.h */,
+				1964630313D5B59C00CAB29B /* NSString+RelativePathExt.m */,
 			);
 			path = ringoman;
 			sourceTree = "<group>";
@@ -128,6 +158,26 @@
 				195DC60013CB499D0073A85A /* ringoman-Prefix.pch */,
 				195DC60113CB499D0073A85A /* main.m */,
 				195DC60313CB499D0073A85A /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		196462F313D5B53E00CAB29B /* ringomanTests */ = {
+			isa = PBXGroup;
+			children = (
+				196462F913D5B53E00CAB29B /* ringomanTests.h */,
+				196462FB13D5B53E00CAB29B /* ringomanTests.m */,
+				196462F413D5B53E00CAB29B /* Supporting Files */,
+			);
+			path = ringomanTests;
+			sourceTree = "<group>";
+		};
+		196462F413D5B53E00CAB29B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				196462F513D5B53E00CAB29B /* ringomanTests-Info.plist */,
+				196462F613D5B53E00CAB29B /* InfoPlist.strings */,
+				196462FD13D5B53E00CAB29B /* ringomanTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -152,6 +202,24 @@
 			productReference = 195DC5F013CB499D0073A85A /* ringoman.app */;
 			productType = "com.apple.product-type.application";
 		};
+		196462EE13D5B53E00CAB29B /* ringomanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1964630013D5B53E00CAB29B /* Build configuration list for PBXNativeTarget "ringomanTests" */;
+			buildPhases = (
+				196462EA13D5B53E00CAB29B /* Sources */,
+				196462EB13D5B53E00CAB29B /* Frameworks */,
+				196462EC13D5B53E00CAB29B /* Resources */,
+				196462ED13D5B53E00CAB29B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ringomanTests;
+			productName = ringomanTests;
+			productReference = 196462EF13D5B53E00CAB29B /* ringomanTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -170,6 +238,7 @@
 			projectRoot = "";
 			targets = (
 				195DC5EF13CB499D0073A85A /* ringoman */,
+				196462EE13D5B53E00CAB29B /* ringomanTests */,
 			);
 		};
 /* End PBXProject section */
@@ -186,7 +255,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		196462EC13D5B53E00CAB29B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196462F813D5B53E00CAB29B /* InfoPlist.strings in Resources */,
+				196462FA13D5B53E00CAB29B /* ringomanTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		196462ED13D5B53E00CAB29B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		195DC5EC13CB499D0073A85A /* Sources */ = {
@@ -200,6 +294,16 @@
 				19895BA713CC977600834DB4 /* RMProject.m in Sources */,
 				19895BAB13CC9FE800834DB4 /* RMGenerator.m in Sources */,
 				192C1CCE13CF3438001FCC9D /* NSUserDefaults+GetterExt.m in Sources */,
+				1964630413D5B59C00CAB29B /* NSString+RelativePathExt.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		196462EA13D5B53E00CAB29B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196462FC13D5B53E00CAB29B /* ringomanTests.m in Sources */,
+				1964630513D5B59C00CAB29B /* NSString+RelativePathExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +332,14 @@
 				195DC60A13CB499D0073A85A /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		196462F613D5B53E00CAB29B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				196462F713D5B53E00CAB29B /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -295,6 +407,46 @@
 			};
 			name = Release;
 		};
+		196462FE13D5B53E00CAB29B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ringomanTests/ringomanTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "ringomanTests/ringomanTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		196462FF13D5B53E00CAB29B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ringomanTests/ringomanTests-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "ringomanTests/ringomanTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -315,6 +467,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		1964630013D5B53E00CAB29B /* Build configuration list for PBXNativeTarget "ringomanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				196462FE13D5B53E00CAB29B /* Debug */,
+				196462FF13D5B53E00CAB29B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

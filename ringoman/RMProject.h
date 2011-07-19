@@ -28,7 +28,7 @@
 - (void)addSourceFile:(NSString*)filename;
 - (void)removeSourceFileAtIndexes:(NSIndexSet*)indexes;
 
-- (BOOL)loadFromDictionary:(NSDictionary*)dictionary;
+- (BOOL)loadFromDictionary:(NSDictionary*)dictionary withBasePath:(NSString*)basePath;
 - (BOOL)loadFromFile:(NSString*)filename;
 - (BOOL)writeToFile:(NSString*)filename;
 

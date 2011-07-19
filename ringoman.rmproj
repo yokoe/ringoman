@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>files</key>
+	<array>
+		<string>ringoman/AppController.h</string>
+		<string>ringoman/AppController.m</string>
+		<string>ringoman/main.m</string>
+		<string>ringoman/NSString+RelativePathExt.h</string>
+		<string>ringoman/NSString+RelativePathExt.m</string>
+		<string>ringoman/NSUserDefaults+GetterExt.h</string>
+		<string>ringoman/NSUserDefaults+GetterExt.m</string>
+		<string>ringoman/ringomanAppDelegate.h</string>
+		<string>ringoman/ringomanAppDelegate.m</string>
+		<string>ringoman/RMGenerator.h</string>
+		<string>ringoman/RMGenerator.m</string>
+		<string>ringoman/RMGlobal.h</string>
+		<string>ringoman/RMInitialSetupWindow.h</string>
+		<string>ringoman/RMInitialSetupWindow.m</string>
+		<string>ringoman/RMProject.h</string>
+		<string>ringoman/RMProject.m</string>
+		<string>ringomanTests/ringomanTests.h</string>
+		<string>ringomanTests/ringomanTests.m</string>
+	</array>
+	<key>merge_categories</key>
+	<true/>
+	<key>project_company</key>
+	<string></string>
+	<key>project_name</key>
+	<string></string>
+</dict>
+</plist>
