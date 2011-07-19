@@ -10,7 +10,6 @@
 
 
 @implementation RMInitialSetupWindow
-@synthesize templatePathLabel;
 @synthesize pathLabel;
 
 - (id)init

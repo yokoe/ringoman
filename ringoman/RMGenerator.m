@@ -60,7 +60,6 @@
 - (void)runCommandWithCopiedDirectory:(NSString*)copiedDirectory {
     
     NSString* pathForBinary = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyAppledocBinPath];
-    NSString* pathForTemplate = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyTemplateDirectoryPath];
     
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:pathForBinary];
@@ -80,18 +79,11 @@
         [arguments addObject:@"--merge-categories"];
     }
     
-    if (pathForTemplate) {
-        [arguments addObject:@"--templates"];
-        [arguments addObject:pathForTemplate];
-    }
-    
     // Output directory
     [arguments addObject:@"--output"];
     [arguments addObject:outputDirectory];
     
     [arguments addObject:copiedDirectory]; // Source files directory at last.
-    
-    NSLog(@"%@", [arguments componentsJoinedByString:@" "]);
     
     [task setArguments:arguments];
     

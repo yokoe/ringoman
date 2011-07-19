@@ -7,7 +7,6 @@
 //
 
 #define kSettingKeyAppledocBinPath @"appledoc_bin_path"
-#define kSettingKeyTemplateDirectoryPath @"template_path"
 #define kRMProjectFileExtenstion @"rmproj"
 
 #import "NSUserDefaults+GetterExt.h"

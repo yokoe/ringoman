@@ -12,8 +12,6 @@
 @interface RMInitialSetupWindow : NSWindow {
 @private
     IBOutlet NSTextField *pathLabel;
-    NSTextField *templatePathLabel;
 }
-@property (assign) IBOutlet NSTextField *templatePathLabel;
 @property (readonly) NSTextField *pathLabel;
 @end
