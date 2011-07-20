@@ -14,6 +14,7 @@
 @private
     IBOutlet NSButton *mergeCategoriesCheck;
     IBOutlet NSButton *createHTMLCheck;
+    IBOutlet NSTextField *outputDirectoryText;
     IBOutlet NSTextField *projectCompanyText;
     IBOutlet NSTextField *projectNameText;
     IBOutlet NSTableView *sourceFilesTable;

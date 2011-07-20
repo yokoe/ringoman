@@ -11,13 +11,29 @@
 #import "NSString+RelativePathExt.h"
 
 static NSString* const kFileKeyForFiles = @"files";
+static NSString* const kFileKeyForOutputDirectory = @"output_directory";
 static NSString* const kFileKeyForProjectCompany = @"project_company";
 static NSString* const kFileKeyForProjectName = @"project_name";
 static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 
 
 @implementation RMProject
-@synthesize createHTML, files, mergeCategories, projectCompany, projectName;
+@synthesize createHTML, files, mergeCategories, outputDirectory, projectCompany, projectName;
+
+#pragma mark Validation
+
+- (NSString*)errorMessage {
+    // Validates presences
+    NSDictionary* textFields = [NSDictionary dictionaryWithObjectsAndKeys:@"Output directory", @"outputDirectory", @"Project company", @"projectCompany", @"Project name", @"projectName", nil];
+    for (NSString* varName in [textFields allKeys]) {
+        NSString* value = [self performSelector:NSSelectorFromString(varName)];
+        if (value == nil || [value length] == 0) {
+            return [NSString stringWithFormat:@"%@ cannot be nil.", [textFields objectForKey:varName]];
+        }
+    }
+    
+    return nil;
+}
 
 #pragma mark Adding source file
 
@@ -54,6 +70,15 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
     } else {
         files = [[NSMutableArray arrayWithArray:[dictionary objectForKey:kFileKeyForFiles]] retain];
     }
+    
+    NSString* outputDirectory_ = [dictionary objectForKey:kFileKeyForOutputDirectory];
+    if (outputDirectory_) {
+        if (basePath) {
+            self.outputDirectory = [outputDirectory_ absolutePathStringWithBasePath:basePath];
+        } else {
+            self.outputDirectory = outputDirectory_;
+        }
+    }
     self.projectCompany = [dictionary objectForKey:kFileKeyForProjectCompany];
     self.projectName = [dictionary objectForKey:kFileKeyForProjectName];
     self.mergeCategories = [[dictionary objectForKey:kFileKeyForMergeCategories] boolValue];
@@ -75,6 +100,7 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 - (NSDictionary*)dictionaryRepresentation {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:files forKey:kFileKeyForFiles];
+    [dictionary setObject:outputDirectory forKey:kFileKeyForOutputDirectory];
     [dictionary setObject:projectCompany forKey:kFileKeyForProjectCompany];
     [dictionary setObject:projectName forKey:kFileKeyForProjectName];
     [dictionary setObject:[NSNumber numberWithBool:mergeCategories] forKey:kFileKeyForMergeCategories];
@@ -83,6 +109,8 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 
 - (BOOL)writeToFile:(NSString*)filename {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryRepresentation]];
+    
+    // Save paths in relative path.
     NSArray *absoluteFilePaths = [dictionary objectForKey:kFileKeyForFiles];
     NSMutableArray* relativeFilePaths = [NSMutableArray array];
     
@@ -93,6 +121,7 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
     }
     
     [dictionary setObject:relativeFilePaths forKey:kFileKeyForFiles];
+    [dictionary setObject:[[dictionary objectForKey:kFileKeyForOutputDirectory] relativePathStringWithBasePath:basePath] forKey:kFileKeyForOutputDirectory];
     
     return [dictionary writeToFile:filename atomically:YES];
 }
@@ -129,6 +158,7 @@ static NSString* const kFileKeyForMergeCategories = @"merge_categories";
 
 - (void)dealloc
 {
+    self.outputDirectory = nil;
     self.projectCompany = nil;
     self.projectName = nil;
     [files release];

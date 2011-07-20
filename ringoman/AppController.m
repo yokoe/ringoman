@@ -52,6 +52,7 @@
 
 - (void)setValuesToUIFields {
 #define RMSetStringValueToTextField(control, value) (([control setStringValue:value ? value : @""]))
+    RMSetStringValueToTextField(outputDirectoryText, currentProject.outputDirectory);
     RMSetStringValueToTextField(projectCompanyText, currentProject.projectCompany);
     RMSetStringValueToTextField(projectNameText, currentProject.projectName);
     [mergeCategoriesCheck setState:currentProject.mergeCategories];
@@ -61,6 +62,7 @@
 
 - (void)setValuesToProject {
 #define RMCheckboxState(control) (([control state] == NSOnState))
+    currentProject.outputDirectory = [outputDirectoryText stringValue];
     currentProject.projectCompany = [projectCompanyText stringValue];
     currentProject.projectName = [projectNameText stringValue];
     currentProject.createHTML = RMCheckboxState(createHTMLCheck);
@@ -211,6 +213,19 @@
 #pragma mark Generate
 
 - (IBAction)selectOutputDirectory:(id)sender {
+    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanCreateDirectories:YES];
+    
+    [openPanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            currentProject.outputDirectory = [openPanel filename];
+            [self setValuesToUIFields];
+        }
+    }];
+}
+- (IBAction)generateDocuments:(id)sender {
     // Prepare
     [self setValuesToProject];
     
@@ -220,12 +235,10 @@
         NSRunAlertPanel(@"Error", @"The path for appledoc binary is not set.", @"OK", nil, nil);
         return;
     }
-    if (currentProject.projectCompany == nil || [currentProject.projectCompany length] == 0) {
-        NSRunAlertPanel(@"Error", @"Project company cannot be nil.", @"OK", nil, nil);
-        return;
-    }
-    if (currentProject.projectName == nil || [currentProject.projectName length] == 0) {
-        NSRunAlertPanel(@"Error", @"Project name cannot be nil.", @"OK", nil, nil);
+    
+    NSString* errorMessage = [currentProject errorMessage];
+    if (errorMessage) {
+        NSRunAlertPanel(@"Error", errorMessage, @"OK", nil, nil);
         return;
     }
     if (currentProject.files == nil || [currentProject.files count] == 0) {
@@ -233,17 +246,8 @@
         return;
     }
     
-    // Then go
-    NSOpenPanel* openPanel = [NSOpenPanel openPanel];
-    [openPanel setCanChooseFiles:NO];
-    [openPanel setCanChooseDirectories:YES];
-    [openPanel setCanCreateDirectories:YES];
-    [openPanel beginSheetModalForWindow:mainWindow completionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
-            [self saveCurrentSettings];
-            [RMGenerator generateWithProject:currentProject outputDirectory:[openPanel filename]];
-        }
-    }];
+    [self saveCurrentSettings];
+    [RMGenerator generateWithProject:currentProject outputDirectory:currentProject.outputDirectory];
 }
 
 #pragma mark Window delegate

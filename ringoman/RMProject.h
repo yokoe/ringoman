@@ -14,12 +14,14 @@
 @interface RMProject : NSObject <NSTableViewDataSource> {
 @private
     NSMutableArray* files;
+    NSString* outputDirectory;
     NSString* projectCompany;
     NSString* projectName;
     BOOL createHTML;
     BOOL mergeCategories;
 }
 @property (readonly) NSMutableArray* files;
+@property (retain) NSString* outputDirectory;
 @property (retain) NSString* projectCompany;
 @property (retain) NSString* projectName;
 @property (assign) BOOL createHTML;
@@ -33,5 +35,12 @@
 - (BOOL)writeToFile:(NSString*)filename;
 
 - (NSDictionary*)dictionaryRepresentation;
+
+/**
+ * Validates fields of project. Returns nil if there are no errors. Otherwise, returns an error message.
+ *
+ * @return A string value that contains descripton
+ */
+- (NSString*)errorMessage;
 
 @end
